@@ -8,10 +8,14 @@
 # approaches the probability of getting even number which
 # is 1/2 .
 
+# If you run it on pc you will see the progress, here its all computed on server
+
 import random as r
 import math
 
-ITERNUM = math.pow(10, 7)
+POWER = 5 # will exceed the timeout when higher than 5
+
+ITERNUM = math.pow(10, POWER)
 
 evens=0
 
@@ -22,15 +26,14 @@ print ("Rolling a die {} times...".format(ITERNUM))
 try :
     while i<ITERNUM :
         percent = (i/ITERNUM)*100.0
-        if (percent%1.00 == 0):
-            print(percent, "%")
+        if (percent%5 == 0):
+            print(int(percent), "%")
         evens += r.randint(1, 6)%2
-        i += 1 # after an iteration is complete, add to interations
-
+        i += 1 # after an iteration is complete, add to iterations
+    print("100 %")
 except KeyboardInterrupt:
     pass
 finally:
-    print("100 %")
     print("even numbers : ", evens)
     print("iterations : ", i)
     print("evens/i : ", evens/i)
